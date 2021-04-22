@@ -4,7 +4,7 @@ import {OnOff, OnOffPropsType} from "./OnOff";
 import {action} from "@storybook/addon-actions";
 
 export default {
-		title: "OnOff stories",
+		title: "components/OnOff stories",
 		component: OnOff,
 } as Meta;
 

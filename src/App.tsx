@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import "./App.css";
 import {Rating, RatingValueType} from "./components/Rating/Rating";
 import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
-import Accordion from "./components/Accordion/Accordion";
-import OnOff from "./components/OnOff/OnOff";
+import {Accordion} from "./components/Accordion/Accordion";
+import {OnOff} from "./components/OnOff/OnOff";
 
 function App() {
 		const [ratingValue, setRatingValue] = useState<RatingValueType>(4)
@@ -22,7 +22,16 @@ function App() {
 						{/*<UncontrolledAccordion title={"Menu"}/>*/}
 						{/*<UncontrolledAccordion title={"Users"}/>*/}
 						<UncontrolledRating/>
-						<Accordion title={"Menu"} onClick={setAccordionCollapsed} collapsed={accordionCollapsed}/>
+						<Accordion title={"Menu"} onClickTitle={setAccordionCollapsed} collapsed={accordionCollapsed} onClickItem={(id) => {
+								alert(`user with ID ${id} should be happy`)
+						}}
+											 items={[{
+													 title: "Dima",
+													 value: "1"
+											 }, {
+													 title: "Valera",
+													 value: "2"
+											 }]}/>
 						{/*<Rating value={3}/>*/}
 				</div>
 		);

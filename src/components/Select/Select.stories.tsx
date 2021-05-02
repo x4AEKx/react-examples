@@ -1,22 +1,50 @@
-import React, {ChangeEvent, InputHTMLAttributes, useState} from "react";
+import React, {useState} from "react";
 import {Meta, Story} from "@storybook/react";
+import {Select, SelectType} from "./Select"
+import {action} from "@storybook/addon-actions";
+
 export default {
 		title: "components/Select",
-		// component: input,
+		component: Select
 } as Meta;
 
-const Template: Story<InputHTMLAttributes<HTMLInputElement>> = (args) => <input {...args} />;
+const callback = action("Value changed")
 
-export const ControlledSelect = () => {
-		const [parentValue, setParentValue] = useState<string | undefined>("2")
-		const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-				setParentValue(e.currentTarget.value)
-		}
+const Template: Story<SelectType> = (args) => <Select {...args} />;
 
-		return <select value={parentValue} onChange={onChange}>
-				<option>none</option>
-				<option value="1">Minsk</option>
-				<option value="2">Moscow</option>
-				<option value="3">Kyev</option>
-		</select>
+export const DefaultSelect = Template.bind({})
+DefaultSelect.args = {
+		value: "1",
+		onChange: callback,
+		items: [
+				{value: "1", title: "Minsk"},
+				{value: "2", title: "Moscow"},
+				{value: "3", title: "Kiev"}
+		]
 }
+
+export const WithoutValue = () => {
+		const [value, setValue] = useState(null)
+
+		return <>
+				<Select value={value} onChange={setValue} items={[
+						{value: "1", title: "Minsk"},
+						{value: "2", title: "Moscow"},
+						{value: "3", title: "Kiev"}
+				]}/>
+		</>
+}
+
+export const WithValue = () => {
+		const [value, setValue] = useState("2")
+
+		return <>
+				<Select value={value} onChange={setValue} items={[
+						{value: "1", title: "Minsk"},
+						{value: "2", title: "Moscow"},
+						{value: "3", title: "Kiev"}
+				]}/>
+		</>
+}
+
+

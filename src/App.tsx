@@ -4,6 +4,7 @@ import {Rating, RatingValueType} from "./components/Rating/Rating";
 import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 import {Accordion} from "./components/Accordion/Accordion";
 import {OnOff} from "./components/OnOff/OnOff";
+import {UncontrolledAccordion} from "./components/UncontrolledAccordion/UncontrolledAccordion";
 
 function App() {
 		const [ratingValue, setRatingValue] = useState<RatingValueType>(4)
@@ -20,7 +21,7 @@ function App() {
 						{/*Article 1*/}
 						<Rating value={ratingValue} onClick={setRatingValue}/>
 						{/*<UncontrolledAccordion title={"Menu"}/>*/}
-						{/*<UncontrolledAccordion title={"Users"}/>*/}
+						<UncontrolledAccordion title={"Users"}/>
 						<UncontrolledRating/>
 						<Accordion title={"Menu"} onClickTitle={setAccordionCollapsed} collapsed={accordionCollapsed} onClickItem={(id) => {
 								alert(`user with ID ${id} should be happy`)
